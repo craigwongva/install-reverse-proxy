@@ -4,7 +4,7 @@
 
 export TMP=/tmp/https
 
-cd /home/ec2-user/generate-certs &> $TMP-1400
+cd /home/ec2-user/install-reverse-proxy &> $TMP-1400
 
 cp nginx_https.conf nginx_https_local.conf &> $TMP-1450
 
