@@ -8,7 +8,7 @@
 #
 
 TMP=/tmp/nginx
-GITHUBFOLDER=/home/ec2-user/generate-certs
+GITHUBFOLDER=/home/ec2-user/install-reverse-proxy
 
 ##
 # Validate parameters.
