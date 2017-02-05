@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+# Install nginx.
+#
+# Source:
+#  https://www.digitalocean.com/community/tutorials/
+#   how-to-install-elasticsearch-logstash-and-kibana-elk-stack-on-centos-7
+#
+
+TMP=/tmp/nginx
+GITHUBFOLDER=/home/ec2-user/generate-certs
+
+##
+# Validate parameters.
+##
+
+space=$1
+nginxuserid=craig
+nginxpassword=$2
+
+echo nginx credentials: ${nginxuserid}/${nginxpassword} &> $TMP-0900
+
+##
+# Install nginx
+##
+
+sudo yum -y install epel-release &> $TMP-2100
+sudo yum -y install nginx httpd-tools &> $TMP-2200
+sudo htpasswd -cb /etc/nginx/htpasswd.users ${nginxuserid} ${nginxpassword} &> $TMP-2300
+
+sudo cp ${GITHUBFOLDER}/nginx.conf /etc/nginx &> $TMP-2400
+sudo cp ${GITHUBFOLDER}/trac.conf /etc/nginx/conf.d &> $TMP-2500
+
+# Allow time for trac.conf to be saved.
+sleep 15 &> $TMP-2550
+
+sudo service nginx start &> $TMP-2600
+
+##
+# Add https
+##
+
+#cd ${GITHUBFOLDER} &> $TMP-2800
+
+#./https ${space} &> $TMP-2900
+
