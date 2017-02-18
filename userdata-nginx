@@ -28,8 +28,8 @@ sudo yum -y install epel-release &> $TMP-2100
 sudo yum -y install nginx httpd-tools &> $TMP-2200
 sudo htpasswd -cb /etc/nginx/htpasswd.users ${nginxuserid} ${nginxpassword} &> $TMP-2300
 
+# This step is duplicated in 'https'. s/m: Refactor
 sudo cp ${GITHUBFOLDER}/nginx.conf /etc/nginx &> $TMP-2400
-sudo cp ${GITHUBFOLDER}/trac.conf /etc/nginx/conf.d &> $TMP-2500
 
 # Allow time for trac.conf to be saved.
 sleep 15 &> $TMP-2550
