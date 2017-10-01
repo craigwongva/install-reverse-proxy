@@ -12,4 +12,11 @@ sed -i "s/KIBANASPACE/blog/" nginx_https_local.conf &> $TMP-1500
 
 sudo cp nginx_https_local.conf /etc/nginx/nginx.conf &> $TMP-1600
 
+aws s3 cp s3://redf4rth-blog/fullchain.pem . &> $TMP-1620
+aws s3 cp s3://redf4rth-blog/privkey.pem .   &> $TMP-1640
+
+sudo mkdir -p /etc/letsencrypt/live/blog.redf4rth.net &> $TMP-1610
+sudo mv fullchain.pem /etc/letsencrypt/live/blog.redf4rth.net &> $TMP-1660
+sudo mv privkey.pem /etc/letsencrypt/live/blog.redf4rth.net &> $TMP-1680
+
 sudo service nginx restart &> $TMP-1700
